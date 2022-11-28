@@ -1,0 +1,31 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="animal.name"
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select class="form-control" name="type" id="type" [(ngModel)]="animal.type" required>
+          <option *ngFor="let typeOption of typeOptions" [value]="typeOption">{{typeOption}}</option>
+        </select>
+      </div>
+
+      <button (click)="saveAnimal()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Animal was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newAnimal()">Add</button>
+    </div>
+  </div>
+</div>

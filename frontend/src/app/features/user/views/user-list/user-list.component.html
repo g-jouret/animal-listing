@@ -1,0 +1,13 @@
+<h2>User list</h2>
+<p>Here is the list of all users:</p>
+
+<div class="card-container">
+  <a class="card card-small" *ngFor="let user of list$ | async" href="/user/{{user.id}}">
+    {{user.firstName}} {{user.name}}
+  </a>
+  <a class="card highlight-card card-small" href="/user/add">
+    <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+    </svg>
+  </a>
+</div>

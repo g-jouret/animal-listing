@@ -1,0 +1,33 @@
+<div>
+  <div *ngIf="animal.id" class="edit-form">
+    <h4>Animal</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" [(ngModel)]="animal.name"/>
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select class="form-control" name="type" id="type" [(ngModel)]="animal.type">
+          <option *ngFor="let typeOption of typeOptions" [value]="typeOption">{{typeOption}}</option>
+        </select>
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteAnimal()">
+      Delete
+    </button>
+
+    <button type="submit" class="badge badge-success mb-2" (click)="updateAnimal()">
+      Update
+    </button>
+
+    <hr>
+
+    <div class="card-container" *ngIf="owner.id">
+      <a class="card card-small" href="/user/{{owner.id}}">
+        {{owner.firstName}} {{owner.name}}
+      </a>
+    </div>
+  </div>
+</div>

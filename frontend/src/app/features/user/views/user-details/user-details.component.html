@@ -1,0 +1,42 @@
+<div>
+  <div *ngIf="user.id" class="edit-form">
+    <h4>User</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" [(ngModel)]="user.name"/>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id="firstName" [(ngModel)]="user.firstName"/>
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteUser()">
+      Delete
+    </button>
+
+    <button type="submit" class="badge badge-success mb-2" (click)="updateUser()">
+      Update
+    </button>
+
+    <hr>
+
+    <p *ngIf="!availableAnimals">No animal available for adoption</p>
+    <div *ngIf="availableAnimals" class="form-group">
+      <label for="newPet">Available pets</label>
+      <select class="form-control" name="newPet" id="newPet" #newPet (change)="selectedPetId = newPet.value">
+        <option>- select a pet to adopt -</option>
+        <option *ngFor="let animal of availableAnimals" [value]="animal.id">{{animal.name}} the {{animal.type}}</option>
+      </select>
+      <button class="badge badge-success mb-2" [disabled]="!selectedPetId" (click)="addPets()">Adopt</button>
+    </div>
+    <div class="card-container" *ngIf="user.pets">
+      <div class="card" *ngFor="let animal of user.pets">
+        <a href="/animal/{{animal.id}}">{{animal.name}} the {{animal.type}}</a>
+        <button class="badge badge-danger mr-2" (click)="removePet(animal.id)">Remove</button>
+      </div>
+    </div>
+  </div>
+
+</div>
